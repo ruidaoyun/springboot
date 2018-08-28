@@ -1,0 +1,13 @@
+server:
+  address: localhost
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:mldn
+    username: c##rdy
+    password: 123456
+mybatis:
+  type-aliases-package: com.belle.springboot.dao
+  mapper-locations: classpath*:com/belle/springboot/dao/mapper/*.xml
