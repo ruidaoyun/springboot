@@ -15,7 +15,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 
 public class JwtFilter extends GenericFilterBean {
     @Autowired
@@ -45,11 +44,6 @@ public class JwtFilter extends GenericFilterBean {
                 }
                 final Claims claims=JwtHelper.parseJWT (token, audience.getBase64Secret ());
                 if (claims == null) {
-                    //没有验证信息
-                    response.sendRedirect ("/401");
-                }
-                //request.setAttribute ("CLAIMS", claims);
-                if(claims.getExpiration ().before (new Date (System.currentTimeMillis ()))){
                     //登录过期
                     response.sendRedirect ("/expire");
                 }

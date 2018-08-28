@@ -13,8 +13,8 @@ public class LoginUserServiceImpl implements LoginUserService {
 
     @Override
     public LoginUser login(LoginUser loginUser) {
-        System.err.println (loginUser);
-        System.err.println (loginUserDAO.login (loginUser));
+        //System.err.println (loginUser);
+        //System.err.println (loginUserDAO.login (loginUser));
         return loginUserDAO.login (loginUser);
     }
 }

@@ -1,6 +1,5 @@
 package com.belle.springboot.controller;
 
-import com.belle.springboot.commons.BaseResponse;
 import com.belle.springboot.commons.JwtHelper;
 import com.belle.springboot.commons.RedisUtil;
 import com.belle.springboot.commons.RegexUtils;
@@ -65,21 +64,25 @@ public class LoginUserController {
                 audience.getExpiresSecond () * 1000,
                 audience.getBase64Secret ());
         map.put ("ok","bearer;"+jwt);
-        redisUtil.set (jwt,user.getId ());
-        redisUtil.expire (jwt,5*60);
-        System.err.print (redisUtil.get (jwt));
+        //redisUtil.set (jwt,user.getId ());
+        //redisUtil.expire (jwt,5*60);
+        //System.err.print (redisUtil.get (jwt));
         return map;
     }
 
     @RequestMapping(path = "/401")
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public BaseResponse unauthorized() {
-        return new BaseResponse(false, "Unauthorized", null);
+    public Map unauthorized() {
+        HashMap<String, Object> map=new HashMap<> ();
+        map.put ("error","unauthorized");
+        return map;
     }
 
-    @RequestMapping("/expire")
-    public BaseResponse expire(){
-        return new BaseResponse (false,"expire",null);
+    @GetMapping("/expire")
+    public Map expire(){
+        HashMap<String, Object> map=new HashMap<> ();
+        map.put ("error","token过期");
+        return map;
     }
 
 

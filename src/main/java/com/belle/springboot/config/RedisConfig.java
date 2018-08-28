@@ -40,6 +40,18 @@ public class RedisConfig {
     @Value("${redis.testWhileIdle}")
     private boolean testWhileIdle;
 
+    @Value ("${redis.hostName}")
+    private String hostName;
+
+    @Value ("${redis.port}")
+    private Integer port;
+
+    @Value ("${redis.password}")
+    private String password;
+
+    @Value ("${redis.timeout}")
+    private Integer timeout;
+
 
    /* @Value("${spring.redis.cluster.nodes}")
     private String clusterNodes;
@@ -88,16 +100,16 @@ public class RedisConfig {
     @Bean
     public JedisConnectionFactory JedisConnectionFactory(JedisPoolConfig jedisPoolConfig) {
         JedisConnectionFactory JedisConnectionFactory=new JedisConnectionFactory (jedisPoolConfig);
-        //连接池  
+        //连接池
         JedisConnectionFactory.setPoolConfig (jedisPoolConfig);
-        //IP地址  
-        JedisConnectionFactory.setHostName ("192.168.177.128");
-        //端口号  
-        JedisConnectionFactory.setPort (6379);
-        //如果Redis设置有密码  
-        //JedisConnectionFactory.setPassword(password);  
-        //客户端超时时间单位是毫秒  
-        JedisConnectionFactory.setTimeout (5000);
+        //IP地址
+        JedisConnectionFactory.setHostName (hostName);
+        //端口号
+        JedisConnectionFactory.setPort (port);
+        //如果Redis设置有密码
+        JedisConnectionFactory.setPassword(password);
+        //客户端超时时间单位是毫秒
+        JedisConnectionFactory.setTimeout (timeout);
         return JedisConnectionFactory;
     }
 
