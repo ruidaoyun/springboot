@@ -16,17 +16,13 @@ public class JwtHelper {
      * 解析jwt
      */
     public static Claims parseJWT(String jsonWebToken, String base64Security){
-        try
-        {
+
             Claims claims = Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
                     .parseClaimsJws(jsonWebToken).getBody();
+            System.err.println (claims);
             return claims;
-        }
-        catch(Exception ex)
-        {
-            return null;
-        }
+
     }
 
     /**

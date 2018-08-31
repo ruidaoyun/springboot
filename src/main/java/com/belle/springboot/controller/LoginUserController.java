@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,6 +24,9 @@ public class LoginUserController {
 
     @Autowired
     private LoginUserService loginUserService;
+
+    @Autowired
+    private HttpServletResponse response;
 
     @Autowired
     private Audience audience;
@@ -38,6 +42,7 @@ public class LoginUserController {
             @RequestParam("password")String password,
             HttpServletRequest request
     ){
+        System.out.println (loginInfo+"   "+password);
         HashMap<String, Object> map=new HashMap<> ();
         LoginUser loginUser=new LoginUser ();
         if(RegexUtils.checkEmail (loginInfo)){
@@ -69,6 +74,7 @@ public class LoginUserController {
         //System.err.print (redisUtil.get (jwt));
         return map;
     }
+
 
     @RequestMapping(path = "/401")
     @ResponseStatus(HttpStatus.UNAUTHORIZED)

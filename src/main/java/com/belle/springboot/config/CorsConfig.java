@@ -1,4 +1,3 @@
-/*
 package com.belle.springboot.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -43,4 +42,4 @@ public class CorsConfig {
             }
         };
     }
-}*/
+}

@@ -18,7 +18,8 @@ public class JwtFilterConfig {
         //添加需要拦截的url
         List<String> urlPatterns = new ArrayList ();
         urlPatterns.add("/one");
-        //urlPatterns.add("/all");
+        urlPatterns.add("/all");
+        urlPatterns.add ("/users/all");
         registrationBean.addUrlPatterns(urlPatterns.toArray(new String[urlPatterns.size()]));
         return registrationBean;
     }
